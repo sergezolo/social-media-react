@@ -49,6 +49,7 @@ export class login extends Component {
             .post('/login', userData)
             .then((res) => {
                 console.log(res.data)
+                localStorage.setItem('BFIdToken', `Bearer ${res.data.token}`)
                 this.setState({loading: false})
                 this.props.history.push('/')
             })
@@ -124,7 +125,7 @@ export class login extends Component {
                         </Button>
                         <br/>
                         <small>
-                            Dont have an account? Signup <Link to="/signup">here</Link>
+                            Don't have an account? Signup <Link to="/signup">here</Link>
                         </small>        
                     </form>
                 </Grid>
