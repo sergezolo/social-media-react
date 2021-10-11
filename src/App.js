@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles'; //!!!CHECK THIS, theme isn't working
 import jwtDecode from 'jwt-decode';
+//Redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
 //Components
 import Navbar from './components/Navbar';
 import AuthRoute from './util/AuthRoute';
@@ -47,16 +50,18 @@ export class App extends Component {
     return (
       <div className="app">
         <ThemeProvider theme={ theme }>
-          <Router>
-            <Navbar></Navbar>
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={ home }/>
-                <AuthRoute exact path="/login" component={ login } authenticated={authenticated }/>
-                <AuthRoute exact path="/signup" component={ signup } authenticated={authenticated }/>
-              </Switch>
-            </div>
-          </Router>
+          <Provider store={store}>
+            <Router>
+              <Navbar></Navbar>
+              <div className="container">
+                <Switch>
+                  <Route exact path="/" component={ home }/>
+                  <AuthRoute exact path="/login" component={ login } authenticated={authenticated }/>
+                  <AuthRoute exact path="/signup" component={ signup } authenticated={authenticated }/>
+                </Switch>
+              </div>
+            </Router>
+          </Provider>
         </ThemeProvider>
       </div>
     )
