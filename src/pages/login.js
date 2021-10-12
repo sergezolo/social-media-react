@@ -23,7 +23,7 @@ const styles = {
     progress: { position: 'absolute'},
 }
 
-export class login extends Component {
+class login extends Component {
 
     constructor() {
         super();
