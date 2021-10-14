@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
-
-//MUI stuff
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import dayjs from 'dayjs';
+//MUI stuff
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import MuiLink from '@material-ui/core/Link';
+import Typography from '@mui/material/Typography';
+import LocationOn from '@material-ui/icons/LocationOn';
+import LinkIcon from '@material-ui/icons/Link';
+import CalendarToday from '@material-ui/icons/CalendarToday';
 
 
 const styles = {
@@ -60,13 +65,58 @@ const styles = {
 class Profile extends Component {
     render() {
 
-        const { classes, user: { credentials: { handle, email, imageUrl, createdAt, bio, website, location }, loading } } = this.props;
+        const { classes, user: { credentials: { handle, imageUrl, createdAt, bio, website, location }, loading, authenticated } } = this.props;
 
-        return (
-            <div>
-                <p>test</p>
+        let profileMarkup = !loading ? (authenticated ? (
+          <Paper className={classes.paper}>
+            <div className={classes.profile}>
+              <div className="image-wrapper">
+                <img src={imageUrl} alt="avatar" className="profile-image"/>
+              </div>
+              <hr/>
+              <div className="profile-details">
+                <MuiLink component={ Link } to={`/users/${handle}`} color="primary" variant="h5">
+                  @{handle}
+                </MuiLink>
+                <hr/>
+                {bio && <Typography variant="body2">{bio}</Typography>}
+                <hr/>
+                {location && (
+                  <Fragment>
+                    <LocationOn color="primary"/> <span>{location}</span>
+                    <hr/>
+                  </Fragment>
+                )}
+                {website && (
+                  <Fragment>
+                    <LinkIcon color="primary"/> <a href={website} target="_blank" rel='noopener noreferrer'>
+                      {' '}{website}
+                    </a>
+                    <hr/>
+                  </Fragment>
+                )}
+                <CalendarToday color="primary"/>{' '}
+                <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
+              </div>
             </div>
-        )
+          </Paper>
+        ) : (
+          <Paper className={classes.paper}>
+            <Typography variant="body2" align="center">
+              No profile found, please login!
+              <div className={classes.buttons}>
+                <Button variant="contained" color="primary" component={ Link } to='/login'>
+                  Login
+                </Button>
+                <Button variant="contained" color="secondary" component={ Link } to='/signup'>
+                  Signup
+                </Button>
+              </div>
+            </Typography> 
+          </Paper>
+        )) : (<p>loading...</p>)
+
+        return profileMarkup;
     }
 }
 
