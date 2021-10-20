@@ -11,6 +11,7 @@ export const LIKE_SCREAM = 'LIKE_SCREAM';
 export const UNLIKE_SCREAM = 'UNLIKE_SCREAM';
 export const DELETE_SCREAM = 'DELETE_SCREAM';
 export const LOADING_DATA = 'LOADING_DATA';
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
 //UI REDUCER TYPES
 export const SET_ERRORS = 'SET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';

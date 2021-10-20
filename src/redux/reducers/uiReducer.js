@@ -2,7 +2,7 @@ import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI, STOP_LOADING_UI } from '../types'
 
 const initialState = {
     loading: false,
-    error: null,
+    errors: null,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -12,13 +12,13 @@ export default function(state = initialState, action) {
             return {
                 ...state, 
                 loading: false,
-                error: action.payload
+                errors: action.payload
             };
         case CLEAR_ERRORS:
             return {
                 ...state, 
                 loading: false,
-                error: null
+                errors: null
             };
         case LOADING_UI:
             return {

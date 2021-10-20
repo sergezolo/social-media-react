@@ -2,11 +2,13 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import { connect } from 'react-redux';
-import { getScream } from '../redux/actions/dataActions';
-import MyButton from '../util/MyButton';
+import { getScream, clearErrors } from '../../redux/actions/dataActions';
+import MyButton from '../../util/MyButton';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import LikeButton from './LikeButton';
+import Comments from './Comments';
+import CommentForm from './CommentForm';
 //MUI Stuff
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -22,6 +24,11 @@ const styles = {
     invisibleSeparator: {
         border: 'none',
         margin: '4px'
+    },
+    visibleSeparator: {
+        width: '100%',
+        borderBottom: '2px solid gray',
+        marginBottom: '20px'
     },
     profileImage: {
         maxWidth: 200,
@@ -60,11 +67,12 @@ class ScreamDialog extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
+        this.props.clearErrors();
     }    
 
     render() {
 
-        const { classes, scream: { screamId, body, createdAt, likeCount, commentCount, userImage, userHandle }, UI: { loading } } = this.props;
+        const { classes, scream: { screamId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments }, UI: { loading } } = this.props;
 
         const dialogMarkup = loading ? (
             <div className={classes.spinnerDiv}>
@@ -99,6 +107,9 @@ class ScreamDialog extends Component {
                     </MyButton>
                     <span>{commentCount} comments</span>
                 </Grid>
+                <hr className={classes.visibleSeparator}/>
+                <CommentForm screamId={screamId}/>
+                <Comments comments={comments}/>
             </Grid>
         )
 
@@ -127,6 +138,7 @@ class ScreamDialog extends Component {
 
 ScreamDialog.propTypes = {
     getScream: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
     screamId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
     scream: PropTypes.object.isRequired,
@@ -138,4 +150,4 @@ const mapStateToProps = (state) => ({
     UI: state.UI
 })
 
-export default connect(mapStateToProps, { getScream })(withStyles(styles)(ScreamDialog));
+export default connect(mapStateToProps, { getScream, clearErrors })(withStyles(styles)(ScreamDialog));

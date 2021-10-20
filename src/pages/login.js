@@ -117,6 +117,7 @@ class login extends Component {
                             Don't have an account? Signup <Link to="/signup">here</Link>
                         </small>        
                     </form>
+                                {console.log(errors.email)}
                 </Grid>
                 <Grid item sm />
             </Grid>
