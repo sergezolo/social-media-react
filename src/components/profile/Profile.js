@@ -7,6 +7,7 @@ import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 import dayjs from 'dayjs';
 import EditDetails from '../profile/EditDetails';
 import MyButton from '../../util/MyButton'
+import ProfileSkeleton from '../../util/ProfileSkeleton';
 //MUI stuff
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
@@ -145,7 +146,7 @@ class Profile extends Component {
               </div>
             </Typography> 
           </Paper>
-        )) : (<p>loading...</p>)
+        )) : (<ProfileSkeleton />)
 
         return profileMarkup;
     }
