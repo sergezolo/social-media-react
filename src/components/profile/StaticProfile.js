@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import dayjs from 'dayjs';
@@ -14,7 +14,6 @@ import LinkIcon from '@material-ui/icons/Link';
 const styles = {
     paper: {
         padding: 20,
-        marginLeft: 20
     },
     profile: {
         '& .image-wrapper': {
