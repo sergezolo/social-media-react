@@ -75,7 +75,7 @@ class signup extends Component {
                 <Grid item sm />
                 <Grid item sm>
                     <img src={AppIcon} alt="monkey" className={classes.image} />
-                    <Typography variant="h3" className={classes.pageTitle}>
+                    <Typography variant="h3" className={classes.pageTitle} component={'span'}>
                         Signup
                     </Typography>
                     <form noValidate onSubmit={this.handleSubmit}>
@@ -128,7 +128,7 @@ class signup extends Component {
                             fullWidth
                         />
                         {errors.general && (
-                            <Typography variant="body2" className={classes.customError}>
+                            <Typography variant="body2" className={classes.customError} component={'span'}>
                                 {errors.general}
                             </Typography>   
                         )}

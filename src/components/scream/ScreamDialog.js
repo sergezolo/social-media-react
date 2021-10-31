@@ -113,11 +113,11 @@ class ScreamDialog extends Component {
                         @{userHandle}
                     </Typography>
                     <hr className={classes.invisibleSeparator}/>
-                    <Typography variant='body2'>
+                    <Typography variant='body2' component={'span'}>
                         {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                     </Typography>
                     <hr className={classes.invisibleSeparator}/>
-                    <Typography variant='body1'>
+                    <Typography variant='body1' component={'span'}>
                         {body}
                     </Typography>
                     <LikeButton screamId={screamId}/>

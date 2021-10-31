@@ -55,11 +55,11 @@ class Comments extends Component {
                                             >
                                             {userHandle}
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary">
+                                            <Typography variant="body2" color="textSecondary" component={'span'}>
                                                 {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                             </Typography>
                                             <hr className={classes.invisibleSeparator} />
-                                            <Typography variabnt="body1">{body}</Typography>
+                                            <Typography variabnt="body1" component={'span'}>{body}</Typography>
                                         </div>
                                     </Grid>
                                 </Grid>

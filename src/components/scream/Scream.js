@@ -48,9 +48,9 @@ class Scream extends Component {
                 <CardMedia image={userImage} title="Profile Image" className={classes.image}/>
                 <CardContent className={classes.content}>
                     <Typography variant="h5" component= { Link } to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
-                    <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
+                    <Typography variant="body2" color="textSecondary" component={'span'}>{dayjs(createdAt).fromNow()}</Typography>
                     {deleteButton}
-                    <Typography variant="body1">{body}</Typography>
+                    <Typography variant="body1" component={'span'}>{body}</Typography>
                     <LikeButton screamId={screamId}/>
                     <span>{likeCount} likes</span>
                     <MyButton tip="comments">

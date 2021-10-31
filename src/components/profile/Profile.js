@@ -107,7 +107,7 @@ class Profile extends Component {
                   @{handle}
                 </MuiLink>
                 <hr/>
-                {bio && <Typography variant="body2">{bio}</Typography>}
+                {bio && <Typography variant="body2" component={'span'}>{bio}</Typography>}
                 <hr/>
                 {location && (
                   <Fragment>
@@ -134,7 +134,7 @@ class Profile extends Component {
           </Paper>
         ) : (
           <Paper className={classes.paper}>
-            <Typography variant="body2" align="center">
+            <Typography variant="body2" align="center" component={'span'}>
               No profile found, please login!
               <div className={classes.buttons}>
                 <Button variant="contained" color="primary" component={ Link } to='/login'>

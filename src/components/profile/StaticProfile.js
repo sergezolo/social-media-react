@@ -65,7 +65,7 @@ const StaticProfile = (props) => {
                         @{handle}
                     </MuiLink>
                     <hr />
-                    {bio && <Typography variant="body2">{bio}</Typography>}
+                    {bio && <Typography variant="body2" component={'span'}>{bio}</Typography>}
                     <hr />
                     {location && (
                         <Fragment>
